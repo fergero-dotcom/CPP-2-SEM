@@ -50,7 +50,7 @@ int main() {
     bool running = true;
 
     while (running && !cin.eof()) {
-        cout << "\n===== ТАКТИЧЕСКАЯ RPG =====\n"
+        cout << "\n ТАКТИЧЕСКАЯ RPG \n"
              << "1. Отряд\n2. Инвентарь\n3. Экипировка\n"
              << "4. Враги\n5. Битва\n6. Сводка\n0. Выход\nВыбор: ";
         int section = -1;
@@ -448,14 +448,14 @@ int main() {
                 for (int i = 0; i < static_cast<int>(heroes.size()); i++) {
                     Hero& h = heroes[i];
                     levels += h.level; hp += h.hp; mp += h.mp;
-                    cout << i + 1 << ". " << h.name << " | ";
+                    cout << i + 1 << ". " << h.name << " • ";
                     switch (h.heroClass) {
                         case Warrior: cout << "Warrior"; break;
                         case Mage: cout << "Mage"; break;
                         case Healer: cout << "Healer"; break;
                     }
-                    cout << " | Уровень: " << h.level << " | HP: " << h.hp << '/' << h.maxHp
-                         << " | MP: " << h.mp << '/' << h.maxMp << " | Статусы: ";
+                    cout << " • Уровень: " << h.level << " • HP: " << h.hp << '/' << h.maxHp
+                         << " • MP: " << h.mp << '/' << h.maxMp << " • Статусы: ";
                     if (h.status.blessed) cout << "Blessed ";
                     if (h.status.cursed) cout << "Cursed ";
                     if (h.status.poisoned) cout << "Poisoned ";
@@ -468,8 +468,8 @@ int main() {
                     }
                 }
                 if (section == 6)
-                    cout << "Героев: " << heroes.size() << " | Общий уровень: " << levels
-                         << " | Всего HP: " << hp << " | Всего MP: " << mp << '\n';
+                    cout << "Героев: " << heroes.size() << " • Общий уровень: " << levels
+                         << " • Всего HP: " << hp << " • Всего MP: " << mp << '\n';
             }
             if ((section == 2 && action == 3) || section == 6) {
                 int occupied = 0;
@@ -480,30 +480,30 @@ int main() {
                     cout << i + 1 << ". ";
                     if (item.name.empty()) { cout << "Пусто\n"; continue; }
                     occupied++; weight += item.weight; value += item.value;
-                    cout << item.name << " | Вес: " << item.weight << " | Цена: " << item.value;
+                    cout << item.name << " • Вес: " << item.weight << " • Цена: " << item.value;
                     switch (item.type) {
                         case Weapon:
-                            cout << " | Weapon | Урон: " << item.props.weapon.damage
-                                 << " | Прочность: " << item.props.weapon.durability
-                                 << " | Двуручное: " << item.props.weapon.twoHanded; break;
+                            cout << " • Weapon • Урон: " << item.props.weapon.damage
+                                 << " • Прочность: " << item.props.weapon.durability
+                                 << " • Двуручное: " << item.props.weapon.twoHanded; break;
                         case Armor:
-                            cout << " | Armor | Защита: " << item.props.armor.defense
-                                 << " | Прочность: " << item.props.armor.durability
-                                 << " | Магическая: " << item.props.armor.magical; break;
+                            cout << " • Armor • Защита: " << item.props.armor.defense
+                                 << " • Прочность: " << item.props.armor.durability
+                                 << " • Магическая: " << item.props.armor.magical; break;
                         case Potion:
-                            cout << " | Potion | HP: " << item.props.potion.healAmount
-                                 << " | MP: " << item.props.potion.manaAmount; break;
+                            cout << " • Potion • HP: " << item.props.potion.healAmount
+                                 << " • MP: " << item.props.potion.manaAmount; break;
                     }
                     cout << '\n';
                 }
-                cout << "Занято: " << occupied << "/16 | Вес: " << weight << " | Стоимость: " << value << '\n';
+                cout << "Занято: " << occupied << "/16 • Вес: " << weight << " • Стоимость: " << value << '\n';
             }
             if ((section == 4 && action == 3) || section == 6) {
                 cout << "\nВраги:\n";
                 if (enemyCount == 0) cout << "Врагов нет.\n";
                 for (int i = 0; i < enemyCount; i++)
-                    cout << i + 1 << ". " << enemies[i].name << " | HP: " << enemies[i].hp
-                         << " | Урон: " << enemies[i].damage << '\n';
+                    cout << i + 1 << ". " << enemies[i].name << " • HP: " << enemies[i].hp
+                         << " • Урон: " << enemies[i].damage << '\n';
             }
             if (cin.fail() && !cin.eof()) {
                 cin.clear();
